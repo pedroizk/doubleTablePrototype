@@ -3,7 +3,7 @@
 import type { ColumnDef } from "@tanstack/react-table"
 import type { Operacao } from "./doubleTableInterfaces"
 import { Button } from "./ui/button"
-import { ArrowUpDown } from "lucide-react"
+import { ArrowUpDown, ClipboardPenLine, Pencil, UserPen } from "lucide-react"
 
 export const columnsOperacoes: ColumnDef<Operacao>[] = [
   {
@@ -73,7 +73,22 @@ export const columnsOperacoes: ColumnDef<Operacao>[] = [
   },
   enableSorting: true,
   sortingFn: "basic",
-}
+},
+
+{
+    id: "buttonOp",
+    header: () => null,  
+    cell: ({ row }) => {
+      return (
+        <div className="p-2 bg-[#4a6aa1] rounded-full cursor-pointer flex items-center justify-center hover:bg-[#0e326c] transition-colors duration-200">
+          <button className="flex items-center justify-center cursor-pointer">
+            <Pencil strokeWidth={2} size={15} color="white" />
+          </button>
+        </div>
+      );
+
+    }
+  },
 
 
 

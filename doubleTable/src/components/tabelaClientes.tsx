@@ -37,7 +37,12 @@ export function TabelaClientes<TData extends BaseCliente, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
 
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [sorting, setSorting] = React.useState<SortingState>([
+    {
+      id: "quantidadeDeDinheiro",
+      desc: true,
+    },
+  ])
   const defaultExpanded: Record<string, boolean> = {}
   data.forEach((cliente, idx) => {
     if (cliente.operacoes.length > 0) {
@@ -47,22 +52,20 @@ export function TabelaClientes<TData extends BaseCliente, TValue>({
 
 
   const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
-    getRowCanExpand: (row) => row.original.operacoes.length > 0,
-    getSortedRowModel: getSortedRowModel(),
-    state: {
-      sorting,
-      
-    },
-    initialState: {
-      expanded: defaultExpanded
-    },
-    onSortingChange: setSorting,
-    
-  })
+  data,
+  columns,
+  getCoreRowModel: getCoreRowModel(),
+  getExpandedRowModel: getExpandedRowModel(),
+  getRowCanExpand: (row) => row.original.operacoes.length > 0,
+  getSortedRowModel: getSortedRowModel(),
+  state: {
+    sorting,
+  },
+  initialState: {
+    expanded: defaultExpanded,
+  },
+  onSortingChange: setSorting,
+})
 
   return (
     <div className="rounded-md border">
